@@ -14,6 +14,17 @@ namespace SaladDemo {
       CreateWebHostBuilder(args).Build().Run();
     }
 
+    private static object _repo;
+
+    public static object Repository {
+      get {
+        if(_repo == null) {
+          _repo = new object();
+        }
+        return _repo;
+      }
+    }
+
     public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         WebHost.CreateDefaultBuilder(args)
             .UseStartup<Startup>();
