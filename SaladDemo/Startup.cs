@@ -15,7 +15,10 @@ namespace SaladDemo {
   public class Startup {
     public Startup(IConfiguration configuration) {
       Configuration = configuration;
+      APIKey = Configuration["APIKey"];
     }
+
+    public static string APIKey;
 
     public IConfiguration Configuration { get; }
 
@@ -23,8 +26,6 @@ namespace SaladDemo {
     public void ConfigureServices(IServiceCollection services) {
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-      // Register the Swagger services
-      services.AddSwaggerDocument();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,9 +35,6 @@ namespace SaladDemo {
       } else {
         app.UseHsts();
       }
-      // Register the Swagger generator and the Swagger UI middlewares
-      app.UseOpenApi();
-      app.UseSwaggerUi3();
 
       app.UseHttpsRedirection();
       app.UseMvc();

@@ -1,0 +1,159 @@
+{
+	"info": {
+		"_postman_id": "09f243ae-3e60-43be-bdd3-8c8ccfddd856",
+		"name": "Salad",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Basic Search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55641/games?q=forest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55641",
+					"path": [
+						"games"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "forest"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55641/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55641",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55641/users/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55641",
+					"path": [
+						"users",
+						"2"
+					]
+				},
+				"description": "Change final digit to user id"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Game to user collection",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"gameId\": 9600 \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55641/users/2/games",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55641",
+					"path": [
+						"users",
+						"2",
+						"games"
+					]
+				},
+				"description": "Include User ID in URL and game ID in body.  A few game IDs to use:\r\n\r\n54528 Super Mario 64\r\n4459  Grand Theft Auto IV\r\n9600  The Forest\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Comparison",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"otherUserId\": 2,\r\n    \"comparison\": \"union\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55641/users/1/comparison",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55641",
+					"path": [
+						"users",
+						"1",
+						"comparison"
+					]
+				},
+				"description": "Compare two users' collections.  URL is /users/{userid}/comparison.  Include other user id and comparison type in request body.  Comparison can be 'union', 'intersection', or 'difference'."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Game",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55641/users/1/games/9600",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55641",
+					"path": [
+						"users",
+						"1",
+						"games",
+						"9600"
+					]
+				},
+				"description": "Delete a game from a user's collection; first parameter is userId and second parameter is gameId.  Gives an error if the user doesn't own the given game."
+			},
+			"response": []
+		}
+	]
+}

@@ -14,12 +14,12 @@ namespace SaladDemo {
       CreateWebHostBuilder(args).Build().Run();
     }
 
-    private static object _repo;
+    private static UserRepository _repo;
 
-    public static object Repository {
+    public static UserRepository Repository {
       get {
         if(_repo == null) {
-          _repo = new object();
+          _repo = new UserRepository();
         }
         return _repo;
       }
